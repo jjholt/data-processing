@@ -2,7 +2,7 @@
 % Depends on https://uk.mathworks.com/matlabcentral/fileexchange/44206-converttdms-v10
 % Make sure simpleConvertTDMS is in your path.
 clc; clear;
-
+tic;
 %% Load directories
 folderpath = uigetdir(".", "Pick directory with TDMS files for conversion");
 cd(folderpath);
@@ -14,32 +14,35 @@ files = {dir("*.tdms").name}';
 data = simpleConvertTDMS(false, files);
 data_raw = {data.Data}';
 
-%% 
-for i = 1:length(data_raw)
+%% Matlab's dogshit struct interface
+properties = [
+    struct('pattern', 'lvdt', 'suffix', '-lvdt');
+    struct('pattern', 'state.jcs', 'suffix', '-loads_translations');
+    struct('pattern', 'kinematics', 'suffix', '-kinematics');
+    struct('pattern', 'kinetics', 'suffix', '-kinetics');
+];
+
+%%
+parfor i = 1:length(data_raw)
     measured_data = data_raw{i}.MeasuredData;
     names = {measured_data.Name};
-    % Find the LVDTs
-    lvdt_indices = cellfun(@(x) contains(lower(x), 'lvdt') && contains(x, '/'), names);
-    lvdts = find_properties(measured_data, lvdt_indices);
-    print_csvs(lvdts, folderpath, filename{i}, "-lvdt");
 
-    % Find the jcs
-    jcs_indices = cellfun(@(x) contains(lower(x), 'state.jcs') && contains(x, '/'), names);
-    jcs = find_properties(measured_data, jcs_indices);
-    print_csvs(jcs, folderpath, filename{i}, "-loads_translations");
+    % This code is ilegible. Matlab is utter horse shit.
 
-    % Find the kinematics
-    kinematics_indices = cellfun(@(x) contains(lower(x), 'kinematics') && contains(x, '/'), names);
-    kinematics = find_properties(measured_data, kinematics_indices);
-    print_csvs(kinematics, folderpath, filename{i}, "-kinematics");
-    
-    % Find the kinetics
-    kinetics_indices = cellfun(@(x) contains(lower(x), 'kinetics') && contains(x, '/'), names);
-    kinetics = find_properties(measured_data, kinetics_indices);
-    print_csvs(kinetics, folderpath, filename{i}, "-kinetics");
+    % find the fields that contain the pattern (lvdt, state.jcs,...) and
+    % give out a logical index array
+    idx_properties = cellfun(@(p) contains(lower(names), p) & contains(names, '/'), {properties.pattern}, 'UniformOutput', false);
+    % create a table from the properties that match the pattern. find_properties() is
+    % doing the heavy lifting
+    prop_data = cellfun(@(idx) find_properties(measured_data, idx), idx_properties, 'UniformOutput', false);
+
+    % print each property as CSV using corresponding suffix
+    cellfun(@(data, suffix) print_csvs(data, folderpath, filename{i}, suffix), prop_data, {properties.suffix}, 'UniformOutput', false);
 
 end
-clear data data_raw filename files folderpath i jcs_indices kinematics_indices kinetics_indices lvdt_indices names
+clear data data_raw filename files folderpath i names properties
+toc;
+%% Local functions
 
 function T = find_properties(measured_data, indices)
 % Indices is a logical array of all the positions relevant to the property
