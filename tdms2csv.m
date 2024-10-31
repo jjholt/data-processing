@@ -4,7 +4,7 @@
 clc; clear;
 tic;
 %% Load directories
-folderpath = uigetdir(".", "Pick directory with TDMS files for conversion");
+folderpath = fullfile(uigetdir(".", "Pick directory folder"), "Data");
 cd(folderpath);
 files = {dir("*.tdms").name}';
 [~, filename, ~] = fileparts(files);
@@ -17,6 +17,7 @@ data_raw = {data.Data}';
 %% Matlab's dogshit struct interface
 properties = [
     struct('pattern', 'lvdt', 'suffix', '-lvdt');
+    struct('pattern', 'sensor.robot position', 'suffix', '-robot_position');
     struct('pattern', 'state.jcs', 'suffix', '-loads_translations');
     struct('pattern', 'kinematics', 'suffix', '-kinematics');
     struct('pattern', 'kinetics', 'suffix', '-kinetics');
@@ -40,7 +41,7 @@ parfor i = 1:length(data_raw)
     cellfun(@(data, suffix) print_csvs(data, folderpath, filename{i}, suffix), prop_data, {properties.suffix}, 'UniformOutput', false);
 
 end
-clear data data_raw filename files folderpath i names properties
+% clear data data_raw filename files folderpath i names properties
 toc;
 %% Local functions
 
