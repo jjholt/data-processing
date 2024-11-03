@@ -1,0 +1,14 @@
+Project Identifier :JJ_test
+Specimen Number :JJH15
+Experiment Run Number :029
+Experiment Run Name :Native_IE_optimise
+Archived Files :D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Configuration\Project.sVprj
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\029_Native_IE_optimise_IE at 0_1of1_1_Main.tdms
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\029_Native_IE_optimise_IE at 0_1of1_1_Main_processed.tdms
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\029_Native_IE_optimise_IE at 45_1of1_1_Main.tdms
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\029_Native_IE_optimise_IE at 45_1of1_1_Main_processed.tdms
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\029_Native_IE_optimise_IE at 90_1of1_1_Main.tdms
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\029_Native_IE_optimise_IE at 90_1of1_1_Main_processed.tdms
+D:\simVITRO\JJ_test\JJH15\029_Native_IE_optimise\Data\JJ_test_JJH15_029_Native_IE_optimise_summary.txt
+
+Additional Comments :OK

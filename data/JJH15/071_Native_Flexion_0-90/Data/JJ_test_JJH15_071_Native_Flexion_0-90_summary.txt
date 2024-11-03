@@ -1,0 +1,10 @@
+Project Identifier :JJ_test
+Specimen Number :JJH15
+Experiment Run Number :071
+Experiment Run Name :Native_Flexion 0-90
+Archived Files :D:\simVITRO\JJ_test\JJH15\071_Native_Flexion 0-90\Configuration\Project.sVprj
+D:\simVITRO\JJ_test\JJH15\071_Native_Flexion 0-90\Data\071_Native_Flexion 0-90_Passive Flexion_1of1_1_Main.tdms
+D:\simVITRO\JJ_test\JJH15\071_Native_Flexion 0-90\Data\071_Native_Flexion 0-90_Passive Flexion_1of1_1_Main_processed.tdms
+D:\simVITRO\JJ_test\JJH15\071_Native_Flexion 0-90\Data\JJ_test_JJH15_071_Native_Flexion 0-90_summary.txt
+
+Additional Comments :OK
