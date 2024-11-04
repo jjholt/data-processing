@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{
+    compat=1.18,
+    every axis legend/.append style = {
+        legend columns = 3,
+        anchor = south east,
+    },
+	every axis title/.append style = {
+		above, yshift=6pt,
+	}
+}
+\usetikzlibrary{decorations.markings,arrows.meta}
+\tikzset{
+      myarrowtip/.tip={Straight Barb[length=4pt,width=6pt]},
+      arrow data/.style={%
+      decoration={%
+         markings,
+         mark=at position 0.15 with \arrow{myarrowtip},
+         mark=at position 0.4 with \arrow{myarrowtip},
+         mark=at position 0.8 with \arrow{myarrowtip},
+         },
+         postaction=decorate}
+      }%
+\usepackage{geometry}
+	\geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
+\usepackage{setspace}
+	\onehalfspacing
+
+
+\newcommand{\path}{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data}
+\begin{document}
+
+\begin{tikzpicture}
+	\begin{axis}[
+			width = 16cm, height = 8cm,
+			title = {JJH01 Native},
+			grid=both,
+			xlabel = {Flexion ($^\circ$)}, ylabel = {Posterior translation (mm)},
+		]
+		% Flexions
+		\addplot+[arrow data, no markers] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_Neutral_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{Neutral}
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_ant_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{90N Anterior}
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_post_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{90N Posterior}
+
+		%% Extensions
+		\addplot[blue, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_Neutral_flex_1of1_1_Main_processed_jcs_ext.csv};
+		\addplot[red, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_ant_flex_1of1_1_Main_processed_jcs_ext.csv};
+		\addplot[brown, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH01/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_post_flex_1of1_1_Main_processed_jcs_ext.csv};
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+	\begin{axis}[
+			width = 16cm, height = 8cm,
+			title = {JJH03 Native},
+			grid=both,
+			xlabel = {Flexion ($^\circ$)}, ylabel = {Posterior translation (mm)},
+		]
+		% Flexions
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH03/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_Neutral_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{Neutral}
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH03/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_ant_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{90N Anterior}
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH03/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_post_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{90N Posterior}
+
+		%% Extensions
+		\addplot[blue, arrow data] table [ col sep=comma, x index=0, y index=1,]
+		{data/JJH03/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_Neutral_flex_1of1_1_Main_processed_jcs_ext.csv};
+		\addplot[red, arrow data] table [ col sep=comma, x index=0, y index=1,]
+		{data/JJH03/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_ant_flex_1of1_1_Main_processed_jcs_ext.csv};
+		\addplot[brown, arrow data] table [ col sep=comma, x index=0, y index=1,]
+		{data/JJH03/007_Native_flex-ext 1BW 5IE 90AP/Data/007_Native_flex-ext 1BW 5IE 90AP_90N_post_flex_1of1_1_Main_processed_jcs_ext.csv};
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+	\begin{axis}[
+			width = 16cm, height = 8cm,
+			title = {JJH05 Native},
+			grid=both,
+			xlabel = {Flexion ($^\circ$)}, ylabel = {Posterior translation (mm)},
+		]
+		% Flexions
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH05/009_Native_flex-ext 1BW 5IE 90AP/Data/009_Native_flex-ext 1BW 5IE 90AP_Neutral_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{Neutral}
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH05/009_Native_flex-ext 1BW 5IE 90AP/Data/009_Native_flex-ext 1BW 5IE 90AP_90N_ant_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{90N Anterior}
+		\addplot+[no markers, arrow data] table [ col sep=comma, x index=0, y index=1,]
+			{data/JJH05/009_Native_flex-ext 1BW 5IE 90AP/Data/009_Native_flex-ext 1BW 5IE 90AP_90N_post_flex_1of1_1_Main_processed_jcs_flex.csv};
+		\addlegendentry{90N Posterior}
+
+		%% Extensions
+		\addplot[blue, arrow data] table [ col sep=comma, x index=0, y index=1,]
+		{data/JJH05/009_Native_flex-ext 1BW 5IE 90AP/Data/009_Native_flex-ext 1BW 5IE 90AP_Neutral_flex_1of1_1_Main_processed_jcs_ext.csv};
+		\addplot[red, arrow data] table [ col sep=comma, x index=0, y index=1,]
+		{data/JJH05/009_Native_flex-ext 1BW 5IE 90AP/Data/009_Native_flex-ext 1BW 5IE 90AP_90N_ant_flex_1of1_1_Main_processed_jcs_ext.csv};
+		\addplot[brown, arrow data] table [ col sep=comma, x index=0, y index=1,]
+		{data/JJH05/009_Native_flex-ext 1BW 5IE 90AP/Data/009_Native_flex-ext 1BW 5IE 90AP_90N_post_flex_1of1_1_Main_processed_jcs_ext.csv};
+	\end{axis}
+\end{tikzpicture}
+
+\end{document}
